@@ -1,21 +1,63 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
+<!--script setup>
+import Header from './components/Header.vue'
+//import HelloWorld from './components/HelloWorld.vue'
+//import TheWelcome from './components/TheWelcome.vue'
+
+
+</script-->
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
+  <header class="wrapper">
+    <!--Header /-->
+    LAP Vue by Noah
   </header>
 
   <main>
-    <TheWelcome />
+    <h2>{{ message }}</h2>
+
+    Likes <b>{{ count }}</b><br>
+    <button class="" @click="count++">ကြိုက်</button>
+    <button @click="count--">မကြိုက်</button>
+    <button @click="increaseNumber"> increase</button>
   </main>
 </template>
+
+<script>
+import { nextTick } from 'vue';
+
+export default {
+  data() {
+    return {
+      message: "We Love Vue.",
+      count: 0
+    }
+  },
+  mounted() {
+    console.log("Mounted");
+    console.log("message >> " + this.message);
+    this.count = 1;
+    this.increaseNumber();
+  },
+
+  create() {
+    console.log("Created");
+  },
+
+  methods: {
+    async increment() {
+      this.count++
+      await nextTick()
+    },
+    increaseNumber() {
+      console.log("Call increase Number")
+      this.count += 1
+    }
+  }
+}
+</script>
+
+
+
 
 <style scoped>
 header {
